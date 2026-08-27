@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tournament Standings Merger</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            box-sizing: border-box;
+            /* Ensures padding doesn't break layout */
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f0f2f5;
+            padding: 40px 20px;
+            /* More vertical breathing room */
+            color: #333;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            /* Centers content horizontally */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            /* Keeps it from getting too wide on large screens */
+            background: white;
+            padding: 40px;
+            /* Equal padding on all 4 sides */
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            margin-top: 0;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        textarea {
+            width: 100%;
+            height: 120px;
+            padding: 15px;
+            /* Equal internal padding for text area */
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 13px;
+            resize: vertical;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            justify-content: center;
+            /* Centers buttons */
+        }
+
+        button {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 15px;
+            transition: transform 0.1s, opacity 0.2s;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .btn-gen {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-copy {
+            background: #2ecc71;
+            color: white;
+        }
+
+        .output-section {
+            margin-top: 40px;
+            border-top: 2px solid #eee;
+            padding-top: 30px;
+        }
+
+        .output-box {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 25px;
+            /* Generous equal padding */
+            border-radius: 8px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            white-space: pre-wrap;
+            line-height: 1.6;
+            min-height: 100px;
+            word-break: break-word;
+            /* Prevents long deckcodes from breaking layout */
+        }
+
+        .hint {
+            font-size: 0.85em;
+            color: #777;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>🏆 Tournament Announcement Generator</h1>
+
+        <!-- Input 1: Standings (Wins/Losses) -->
+        <div class="input-group">
+            <label>1. Paste Standings Data (Rank, Name, W, L, D):</label>
+            <textarea id="standingsData" placeholder="1	Kaka	5	0	0	15&#10;2	Огурчик238	4	0	1	12"></textarea>
+            <div class="hint">Format: Rank [Tab] Name [Tab] Wins [Tab] Losses [Tab] Draws [Tab] Points</div>
+        </div>
+
+        <!-- Input 2: Player Info (Deckcodes/Quotes) -->
+        <div class="input-group">
+            <label>2. Paste Player Info Data (Name, Discord, Deckcode, etc.):</label>
+            <textarea id="playerData"
+                placeholder="Kaka	Kaka	...	milkshake064	AtDQ9BYPAEGyA2YTJrFwO2kYBqGQipcgE3IRBzEjE4IxRzMkGXIxapMmIaHQDO0QDsAA	He/him	Quote"></textarea>
+            <div class="hint">Format: The full row from your main Google Sheet.</div>
+        </div>
+
+        <div class="btn-row">
+            <button class="btn-gen" onclick="mergeAndGenerate()">Generate Announcement</button>
+            <button class="btn-copy" onclick="copyOutput()">Copy to Clipboard</button>
+        </div>
+
+        <div class="output-section">
+            <label>Final Output:</label>
+            <div class="output-box" id="finalOutput">Result will appear here...</div>
+        </div>
+    </div>
+
+    <script>
+        function mergeAndGenerate() {
+            const standingsRaw = document.getElementById('standingsData').value;
+            const playersRaw = document.getElementById('playerData').value;
+
+            if (!standingsRaw.trim() || !playersRaw.trim()) {
+                alert("Please fill in both input boxes!");
+                return;
+            }
+
+            // 1. Parse Player Info into a lookup map
+            const playerMap = {};
+            const playerLines = playersRaw.split('\n');
+
+            for (let line of playerLines) {
+                const cols = line.split('\t');
+                if (cols.length < 8) continue;
+
+                // Skip header
+                if (cols[0].toLowerCase().includes("ingame") || cols[0].toLowerCase().includes("name")) continue;
+
+                const name = cols[0].trim();
+                const discord = cols[6].trim();
+                const deckcode = cols[7].trim();
+                const quote = cols[9] ? cols[9].trim() : "";
+
+                // Store by name for easy lookup
+                playerMap[name] = { discord, deckcode, quote };
+            }
+
+            // 2. Process Standings to find the winner and build the list
+            let output = "";
+            const standingLines = standingsRaw.split('\n');
+            let maxWins = -1;
+            let winnerName = "";
+
+            // First pass: Find the winner (highest wins)
+            for (let line of standingLines) {
+                const cols = line.split('\t');
+                if (cols.length < 4) continue;
+                if (cols[1] && cols[1].toLowerCase().includes("name")) continue;
+
+                const name = cols[1].trim();
+                const wins = parseInt(cols[2]) || 0;
+
+                if (wins > maxWins) {
+                    maxWins = wins;
+                    winnerName = name;
+                }
+            }
+
+            // Add Winner's Quote if found
+            if (winnerName && playerMap[winnerName]) {
+                const winnerQuote = playerMap[winnerName].quote;
+                if (winnerQuote && winnerQuote !== ".") {
+                    output += `# Winner's Quote: "${winnerQuote}"\n\n`;
+                }
+            }
+
+            output += "**Standings**\n";
+
+            // Second pass: Build the standings list
+            for (let line of standingLines) {
+                const cols = line.split('\t');
+                if (cols.length < 4) continue;
+                if (cols[1] && cols[1].toLowerCase().includes("name")) continue;
+
+                const name = cols[1].trim();
+                const wins = parseInt(cols[2]) || 0;
+                const losses = parseInt(cols[3]) || 0;
+                const draws = parseInt(cols[4]) || 0;
+
+                const info = playerMap[name];
+                if (!info) {
+                    output += `\n⚠️ Could not find info for: ${name}\n`;
+                    continue;
+                }
+
+                // Determine Trophy/Emoji
+                let emoji = ":medal:";
+                if (wins === 5) emoji = ":trophy:";
+                else if (wins >= 4) emoji = ":medal:";
+                else if (wins >= 3) emoji = ":ribbon:";
+
+                // Format Record
+                let record = `${wins}-${losses}`;
+                if (draws > 0) record += `-${draws}`;
+
+                // Build the entry
+                output += `\n${emoji}  **${record}**\n`;
+                output += `@${info.discord}\n`;
+                output += `Deckcode: ${info.deckcode}\n`;
+                output += `[Deck Builder](<https://gitcg-community.vercel.app/casket?q=${info.deckcode}>)\n`;
+            }
+
+            document.getElementById('finalOutput').textContent = output;
+        }
+
+        function copyOutput() {
+            const text = document.getElementById('finalOutput').textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Copied! Ready to paste into Discord.");
+            });
+        }
+    </script>
+
+</body>
+
+</html>
