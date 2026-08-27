@@ -150,7 +150,7 @@
             <label>2. Paste Player Data (Name, Discord, Deckcode, etc.):</label>
             <textarea id="playerData"
                 placeholder="Kaka	Kaka	...	milkshake064	AtDQ9BYPAEGyA2YTJrFwO2kYBqGQipcgE3IRBzEjE4IxRzMkGXIxapMmIaHQDO0QDsAA	He/him	Quote"></textarea>
-            <div class="hint">Paste Full CSV Paste Sheet Page.</div>
+            <div class="hint">Crl+A copy from Full CSV Paste Sheet Page.</div>
         </div>
 
         <div class="btn-row">
@@ -196,6 +196,9 @@
 
             // 2. Process Standings to find the winner and build the list
             let output = "";
+            output += "# BIG TEXT\n";
+            output += "Smol Text\n";
+            output += "Congrats Smol text\n\n";
             const standingLines = standingsRaw.split('\n');
             let maxWins = -1;
             let winnerName = "";
@@ -225,6 +228,7 @@
                 const winnerQuote = playerMap[winnerName].quote;
                 if (winnerQuote && winnerQuote !== ".") {
                     output += `# Winner's Quote: "${winnerQuote}"\n\n`;
+                    output += `comment on quote\n\n`; // <--- Add this line here
                 }
             } else if (winnersCount > 1) {
                 // Optional: You could add a message here like "Tied for first!" 
@@ -266,7 +270,9 @@
                 output += `Deckcode: ${info.deckcode}\n`;
                 output += `[Deck Builder](<https://gitcg-community.vercel.app/casket?q=${info.deckcode}>)\n`;
             }
-
+            output += `\n**300 :pitacoin: Raffle Winners**\n`;
+            output += `@\n`;
+            output += `@\n`;
             document.getElementById('finalOutput').textContent = output;
         }
 
