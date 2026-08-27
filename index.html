@@ -103,7 +103,7 @@
         }
 
         .btn-copy {
-            background: #2ecc71;
+            background: #5097ad;
             color: white;
         }
 
@@ -141,7 +141,7 @@
         <!-- Input 1: Standings (Wins/Losses) -->
         <div class="input-group">
             <label>1. Paste Standings Data (Rank, Name, W, L, D):</label>
-            <textarea id="standingsData" placeholder="1	Kaka	5	0	0	15&#10;2	Огурчик238	4	0	1	12"></textarea>
+            <textarea id="standingsData" placeholder="1	Kaka	5	0	0	15&#10;2	Огурчик238	4	0	1	12&#10;3	HUGEmuji	4	0	1	12"></textarea>
             <div class="hint">Copy paste from Battlefy standings for placing players.</div>
         </div>
 
@@ -199,8 +199,9 @@
             const standingLines = standingsRaw.split('\n');
             let maxWins = -1;
             let winnerName = "";
+            let winnersCount = 0; // Track how many people have the max wins
 
-            // First pass: Find the winner (highest wins)
+            // First pass: Find the winner (highest wins) and count ties
             for (let line of standingLines) {
                 const cols = line.split('\t');
                 if (cols.length < 4) continue;
@@ -212,15 +213,22 @@
                 if (wins > maxWins) {
                     maxWins = wins;
                     winnerName = name;
+                    winnersCount = 1; // Reset count, new leader found
+                } else if (wins === maxWins) {
+                    winnersCount++; // Another person tied for the lead
                 }
             }
 
-            // Add Winner's Quote if found
-            if (winnerName && playerMap[winnerName]) {
+            // Add Winner's Quote ONLY if there is a single unique winner
+            // If winnersCount > 1, it means there was a tie for first place
+            if (winnerName && winnersCount === 1 && playerMap[winnerName]) {
                 const winnerQuote = playerMap[winnerName].quote;
                 if (winnerQuote && winnerQuote !== ".") {
                     output += `# Winner's Quote: "${winnerQuote}"\n\n`;
                 }
+            } else if (winnersCount > 1) {
+                // Optional: You could add a message here like "Tied for first!" 
+                // but usually leaving it blank is cleaner as per your request.
             }
 
             output += "**Standings**\n";
