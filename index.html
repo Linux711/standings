@@ -197,10 +197,10 @@
             const playersRaw = document.getElementById('playerData').value;
 
             if (!standingsRaw.trim() || !playersRaw.trim()) {
-                alert("Please fill in both input boxes!");
+                showToast("Please fill in both input boxes!");
                 return;
             }
-
+            
             // 1. Parse Player Info into a lookup map
             const playerMap = {};
             const playerLines = playersRaw.split('\n');
@@ -316,16 +316,17 @@
                 });
             }
 
-            function showToast() {
+            function showToast(message = "Copied to Clipboard!") {
                 const toast = document.getElementById("toast");
+                toast.textContent = message; // Set the text dynamically
                 toast.className = "toast show";
                 setTimeout(function () {
                     toast.className = toast.className.replace("show", "");
-                }, 3000); // Hide after 3 seconds
+                }, 3000);
             }
 
     </script>
-    <div id="toast" class="toast">Copied to Clipboard!</div>
+    <div id="toast" class="toast"></div>
 </body>
 
 </html>
