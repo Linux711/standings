@@ -9,28 +9,23 @@
         /* Reset and Base Styles */
         * {
             box-sizing: border-box;
-            /* Ensures padding doesn't break layout */
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background: #f0f2f5;
             padding: 40px 20px;
-            /* More vertical breathing room */
             color: #333;
             margin: 0;
             display: flex;
             justify-content: center;
-            /* Centers content horizontally */
         }
 
         .container {
             width: 100%;
             max-width: 900px;
-            /* Keeps it from getting too wide on large screens */
             background: white;
             padding: 40px;
-            /* Equal padding on all 4 sides */
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
@@ -57,7 +52,6 @@
             width: 100%;
             height: 120px;
             padding: 15px;
-            /* Equal internal padding for text area */
             border: 1px solid #ddd;
             border-radius: 6px;
             font-family: monospace;
@@ -76,7 +70,6 @@
             gap: 15px;
             margin-top: 20px;
             justify-content: center;
-            /* Centers buttons */
         }
 
         button {
@@ -117,14 +110,12 @@
             background: #2d2d2d;
             color: #f8f8f2;
             padding: 25px;
-            /* Generous equal padding */
             border-radius: 8px;
             font-family: 'Consolas', 'Monaco', monospace;
             white-space: pre-wrap;
             line-height: 1.6;
             min-height: 100px;
             word-break: break-word;
-            /* Prevents long deckcodes from breaking layout */
         }
 
         .hint {
@@ -140,7 +131,7 @@
             background-color: #47c774;
             color: #fff;
             text-align: center;
-            border-radius: 50px; /* Rounded edges */
+            border-radius: 50px;
             padding: 16px;
             position: fixed;
             z-index: 1;
@@ -148,7 +139,7 @@
             bottom: 30px;
             transform: translateX(-50%);
             font-size: 16px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             opacity: 0;
             transition: opacity 0.3s, bottom 0.3s;
         }
@@ -156,42 +147,157 @@
         .toast.show {
             visibility: visible;
             opacity: 1;
-            bottom: 50px; /* Slight slide up effect */
+            bottom: 50px;
         }
 
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .nav-tab {
+            padding: 10px 20px;
+            background: #e0e0e0;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .nav-tab.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .nav-tab:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        /* Page Sections */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Character Icons Page Styles */
+        .icons-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 10px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .icons-container img {
+            width: 90px;
+            height: 90px;
+            cursor: pointer;
+            border-radius: 4px;
+            background-color: white;
+            padding: 4px;
+            transition: transform 0.2s;
+        }
+
+        .icons-container img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .loading {
+            text-align: center;
+            font-size: 1.5em;
+            padding: 50px;
+            color: #666;
+        }
+
+        .error {
+            text-align: center;
+            color: #ff6b6b;
+            font-size: 1.2em;
+            padding: 50px;
+        }
     </style>
 </head>
 
 <body>
 
     <div class="container">
-        <!-- Input 1: Standings (Wins/Losses) -->
-        <div class="input-group">
-            <label>1. Paste Standings Data (Rank, Name, W, T, L):</label>
-            <textarea id="standingsData" placeholder="1	Kaka	5	0	0	15&#10;2	Огурчик238	4	0	1	12&#10;3	HUGEmuji	4	0	1	12"></textarea>
-            <div class="hint">Copy paste from Battlefy standings for placing players.</div>
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showPage('tournament')">Tournament Merger</button>
+            <button class="nav-tab" onclick="showPage('icons')">Character Icons</button>
         </div>
 
-        <!-- Input 2: Player Info (Deckcodes/Quotes) -->
-        <div class="input-group">
-            <label>2. Paste Player Data (Name, Discord, Deckcode, etc.):</label>
-            <textarea id="playerData"
-                placeholder="Kaka	Kaka	...	milkshake064	AtDQ9BYPAEGyA2YTJrFwO2kYBqGQipcgE3IRBzEjE4IxRzMkGXIxapMmIaHQDO0QDsAA	He/him	Quote"></textarea>
-            <div class="hint">Crl+A copy from Full CSV Paste Sheet Page.</div>
+        <!-- Tournament Page -->
+        <div id="tournament-page" class="page active">
+            <div class="input-group">
+                <label>1. Paste Standings Data (Rank, Name, W, T, L):</label>
+                <textarea id="standingsData"
+                    placeholder="1	Kaka	5	0	0	15&#10;2	Огурчик238	4	0	1	12&#10;3	HUGEmuji	4	0	1	12"></textarea>
+                <div class="hint">Copy paste from Battlefy standings for placing players.</div>
+            </div>
+
+            <div class="input-group">
+                <label>2. Paste Player Data (Name, Discord, Deckcode, etc.):</label>
+                <textarea id="playerData"
+                    placeholder="Kaka	Kaka	...	milkshake064	AtDQ9BYPAEGyA2YTJrFwO2kYBqGQipcgE3IRBzEjE4IxRzMkGXIxapMmIaHQDO0QDsAA	He/him	Quote"></textarea>
+                <div class="hint">Crl+A copy from Full CSV Paste Sheet Page.</div>
+            </div>
+
+            <div class="btn-row">
+                <button class="btn-gen" onclick="mergeAndGenerate()">Generate Announcement</button>
+                <button class="btn-copy" onclick="copyOutput()">Copy to Clipboard</button>
+            </div>
+
+            <div class="output-section">
+                <label>Final Output:</label>
+                <div class="output-box" id="finalOutput">Result will appear here...</div>
+            </div>
         </div>
 
-        <div class="btn-row">
-            <button class="btn-gen" onclick="mergeAndGenerate()">Generate Announcement</button>
-            <button class="btn-copy" onclick="copyOutput()">Copy to Clipboard</button>
-        </div>
-
-        <div class="output-section">
-            <label>Final Output:</label>
-            <div class="output-box" id="finalOutput">Result will appear here...</div>
+        <!-- Character Icons Page -->
+        <div id="icons-page" class="page">
+            <div id="loading" class="loading">Loading...</div>
+            <div class="icons-container" id="iconContainer"></div>
         </div>
     </div>
 
+    <div id="toast" class="toast"></div>
+
     <script>
+        // Page Navigation
+        function showPage(pageName) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // Remove active class from all tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected page
+            document.getElementById(pageName + '-page').classList.add('active');
+
+            // Activate corresponding tab
+            event.target.classList.add('active');
+
+            // Load icons if switching to icons page
+            if (pageName === 'icons' && !window.iconsLoaded) {
+                loadCharacterIcons();
+            }
+        }
+
+        // Tournament Functions
         function mergeAndGenerate() {
             const standingsRaw = document.getElementById('standingsData').value;
             const playersRaw = document.getElementById('playerData').value;
@@ -200,16 +306,13 @@
                 showToast("Please fill in both input boxes!");
                 return;
             }
-            
-            // 1. Parse Player Info into a lookup map
+
             const playerMap = {};
             const playerLines = playersRaw.split('\n');
 
             for (let line of playerLines) {
                 const cols = line.split('\t');
                 if (cols.length < 8) continue;
-
-                // Skip header
                 if (cols[0].toLowerCase().includes("ingame") || cols[0].toLowerCase().includes("name")) continue;
 
                 const name = cols[0].trim();
@@ -217,11 +320,9 @@
                 const deckcode = cols[7].trim();
                 const quote = cols[9] ? cols[9].trim() : "";
 
-                // Store by name for easy lookup
                 playerMap[name] = { discord, deckcode, quote };
             }
 
-            // 2. Process Standings to find the winner and build the list
             let output = "";
             output += "# BIG TEXT\n";
             output += "Smol Text\n";
@@ -232,7 +333,6 @@
             let winnerName = "";
             let winnersCount = 0;
 
-            // First pass: Find the winner (highest wins) and count ties
             for (let line of standingLines) {
                 const cols = line.split('\t');
                 if (cols.length < 4) continue;
@@ -250,7 +350,6 @@
                 }
             }
 
-            // Add Winner's Quote ONLY if there is a single unique winner
             if (winnerName && winnersCount === 1 && playerMap[winnerName]) {
                 const winnerQuote = playerMap[winnerName].quote;
                 if (winnerQuote && winnerQuote !== ".") {
@@ -261,7 +360,6 @@
 
             output += "**Standings**\n";
 
-            // Second pass: Build the standings list grouped by record (First to Fall)
             let lastRecord = "";
 
             for (let line of standingLines) {
@@ -280,23 +378,19 @@
                     continue;
                 }
 
-                // Determine Trophy/Emoji
                 let emoji = ":medal:";
                 if (wins === 5) emoji = ":trophy:";
                 else if (wins >= 4) emoji = ":medal:";
                 else if (wins >= 3) emoji = ":ribbon:";
 
-                // Format Record
                 let record = `${wins}-${losses}`;
                 if (draws > 0) record += `-${draws}`;
 
-                // Only print the record header if it's different from the previous one
                 if (record !== lastRecord) {
                     output += `\n${emoji} **${record}**\n\n`;
                     lastRecord = record;
                 }
 
-                // Build the player entry
                 output += `@${info.discord}\n`;
                 output += `Deckcode: ${info.deckcode}\n`;
                 output += `[Deck Builder](<https://gitcg-community.vercel.app/casket?q=${info.deckcode}>)\n\n`;
@@ -310,23 +404,84 @@
         }
 
         function copyOutput() {
-                const text = document.getElementById('finalOutput').textContent;
-                navigator.clipboard.writeText(text).then(() => {
-                    showToast();
+            const text = document.getElementById('finalOutput').textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                showToast();
+            });
+        }
+
+        // Character Icons Functions
+        async function copyImage(imgElement) {
+            try {
+                const response = await fetch(imgElement.src);
+                const blob = await response.blob();
+
+                const item = new ClipboardItem({
+                    'image/png': blob
                 });
-            }
 
-            function showToast(message = "Copied to Clipboard!") {
-                const toast = document.getElementById("toast");
-                toast.textContent = message; // Set the text dynamically
-                toast.className = "toast show";
-                setTimeout(function () {
-                    toast.className = toast.className.replace("show", "");
-                }, 3000);
+                await navigator.clipboard.write([item]);
+                return true;
+            } catch (err) {
+                console.error('Failed to copy image:', err);
+                return false;
             }
+        }
 
+        function loadCharacterIcons() {
+            window.iconsLoaded = true;
+
+            fetch('characters.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to load characters.json');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const characters = data.data.roles;
+                    document.getElementById('loading').style.display = 'none';
+
+                    const container = document.getElementById('iconContainer');
+
+                    characters.forEach(char => {
+                        if (char.basic && char.basic.icon_small) {
+                            const img = document.createElement('img');
+                            img.src = char.basic.icon_small;
+                            img.alt = char.basic.name || '';
+                            img.title = char.basic.name || '';
+
+                            img.onclick = async () => {
+                                const success = await copyImage(img);
+                                if (success) {
+                                    showToast(`Copied: ${char.basic.name}`);
+                                } else {
+                                    showToast('Failed to copy image');
+                                }
+                            };
+
+                            container.appendChild(img);
+                        }
+                    });
+                })
+                .catch(error => {
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('iconContainer').innerHTML =
+                        `<div class="error">Error: ${error.message}</div>`;
+                    console.error('Error:', error);
+                });
+        }
+
+        // Toast Function
+        function showToast(message = "Copied to Clipboard!") {
+            const toast = document.getElementById("toast");
+            toast.textContent = message;
+            toast.className = "toast show";
+            setTimeout(function () {
+                toast.className = toast.className.replace("show", "");
+            }, 3000);
+        }
     </script>
-    <div id="toast" class="toast"></div>
 </body>
 
 </html>
