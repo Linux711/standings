@@ -369,8 +369,8 @@
 
                 const name = cols[1].trim();
                 const wins = parseInt(cols[2]) || 0;
-                const losses = parseInt(cols[3]) || 0;
-                const draws = parseInt(cols[4]) || 0;
+                const losses = parseInt(cols[4]) || 0;
+                const draws = parseInt(cols[3]) || 0;
 
                 const info = playerMap[name];
                 if (!info) {
@@ -390,8 +390,7 @@
                     output += `\n${emoji} **${record}**\n\n`;
                     lastRecord = record;
                 }
-
-                output += `@${info.discord}\n`;
+                output += `@${info.discord} • **deckname** • charnames\n`;
                 output += `Deckcode: ${info.deckcode}\n`;
                 output += `[Deck Builder](<https://gitcg-community.vercel.app/casket?q=${info.deckcode}>)\n\n`;
             }
