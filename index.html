@@ -326,7 +326,7 @@
             let output = "";
             output += "# BIG TEXT\n";
             output += "Smol Text\n";
-            output += "Congrats Smol text\n\n";
+            output += "Congrats Smol text\n";
 
             const standingLines = standingsRaw.split('\n');
             let maxWins = -1;
@@ -353,8 +353,8 @@
             if (winnerName && winnersCount === 1 && playerMap[winnerName]) {
                 const winnerQuote = playerMap[winnerName].quote;
                 if (winnerQuote && winnerQuote !== ".") {
-                    output += `# Winner's Quote: "${winnerQuote}"\n\n`;
-                    output += `comment on quote\n\n`;
+                    output += `# Winner's Quote: "${winnerQuote}"\n`;
+                    output += `comment on quote\n`;
                 }
             }
 
@@ -396,8 +396,6 @@
             }
 
             output += `**300 :pitacoin: Raffle Winners**\n`;
-            output += `@\n`;
-            output += `@\n`;
 
             document.getElementById('finalOutput').textContent = output;
         }
