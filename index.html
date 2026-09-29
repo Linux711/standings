@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -177,54 +178,8 @@
             background: #667eea;
             color: white;
         }
-
-        /* Page Sections */
-        .page {
-            display: none;
-        }
-
-        .page.active {
-            display: block;
-        }
-
-        /* Character Icons Page Styles */
-        .icons-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-            gap: 10px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .icons-container img {
-            width: 90px;
-            height: 90px;
-            cursor: pointer;
-            border-radius: 4px;
-            background-color: white;
-            padding: 4px;
-            transition: transform 0.2s;
-        }
-
-        .icons-container img:hover {
-            transform: scale(1.1);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .loading {
-            text-align: center;
-            font-size: 1.5em;
-            padding: 50px;
-            color: #666;
-        }
-
-        .error {
-            text-align: center;
-            color: #ff6b6b;
-            font-size: 1.2em;
-            padding: 50px;
-        }
     </style>
+
 </head>
 
 <body>
@@ -232,12 +187,12 @@
     <div class="container">
         <!-- Navigation Tabs -->
         <div class="nav-tabs">
-            <button class="nav-tab active" onclick="showPage('tournament')">Standings</button>
-            <button class="nav-tab" onclick="showPage('icons')">Character Icons</button>
+            <button class="nav-tab active" onclick="window.location.href='index.html'">Standings</button>
+            <button class="nav-tab" onclick="window.location.href='characters.html'">Character Icons</button>
         </div>
 
         <!-- Tournament Page -->
-        <div id="tournament-page" class="page active">
+        <div id="tournament-page">
             <div class="input-group">
                 <label>1. Paste Standings Data (Rank, Name, W, T, L):</label>
                 <textarea id="standingsData"
@@ -262,43 +217,16 @@
                 <div class="output-box" id="finalOutput">Result will appear here...</div>
             </div>
         </div>
-
-        <!-- Character Icons Page -->
-        <div id="icons-page" class="page">
-            <div id="loading" class="loading">Loading...</div>
-            <div class="icons-container" id="iconContainer"></div>
-        </div>
     </div>
 
     <div id="toast" class="toast"></div>
 
+    <!-- Deck Decoder -->
+    <script src="decoder.js"></script>
+
     <script>
-        // Page Navigation
-        function showPage(pageName) {
-            // Hide all pages
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-
-            // Remove active class from all tabs
-            document.querySelectorAll('.nav-tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-
-            // Show selected page
-            document.getElementById(pageName + '-page').classList.add('active');
-
-            // Activate corresponding tab
-            event.target.classList.add('active');
-
-            // Load icons if switching to icons page
-            if (pageName === 'icons' && !window.iconsLoaded) {
-                loadCharacterIcons();
-            }
-        }
-
         // Tournament Functions
-        function mergeAndGenerate() {
+        async function mergeAndGenerate() {
             const standingsRaw = document.getElementById('standingsData').value;
             const playersRaw = document.getElementById('playerData').value;
 
@@ -378,6 +306,16 @@
                     continue;
                 }
 
+                // Decode the 3 character names from the deck code
+                let charNames = "Unknown";
+
+                try {
+                    const characters = await decodeCharacters(info.deckcode);
+                    charNames = characters.join(", ");
+                } catch (error) {
+                    console.error(`Failed to decode deck for ${name}:`, error);
+                }
+
                 let emoji = ":medal:";
                 if (wins === 5) emoji = ":trophy:";
                 else if (wins >= 4) emoji = ":medal:";
@@ -390,7 +328,8 @@
                     output += `\n${emoji} **${record}**\n\n`;
                     lastRecord = record;
                 }
-                output += `@${info.discord} • **deckname** • charnames\n`;
+
+                output += `**@${info.discord}** • **deckname** • ${charNames}\n`;
                 output += `Deckcode: ${info.deckcode}\n`;
                 output += `[Deck Builder](<https://gitcg-community.vercel.app/casket?q=${info.deckcode}>)\n\n`;
             }
@@ -407,68 +346,6 @@
             });
         }
 
-        // Character Icons Functions
-        async function copyImage(imgElement) {
-            try {
-                const response = await fetch(imgElement.src);
-                const blob = await response.blob();
-
-                const item = new ClipboardItem({
-                    'image/png': blob
-                });
-
-                await navigator.clipboard.write([item]);
-                return true;
-            } catch (err) {
-                console.error('Failed to copy image:', err);
-                return false;
-            }
-        }
-
-        function loadCharacterIcons() {
-            window.iconsLoaded = true;
-
-            fetch('characters.json')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Failed to load characters.json');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    const characters = data.data.roles;
-                    document.getElementById('loading').style.display = 'none';
-
-                    const container = document.getElementById('iconContainer');
-
-                    characters.forEach(char => {
-                        if (char.basic && char.basic.icon_small) {
-                            const img = document.createElement('img');
-                            img.src = char.basic.icon_small;
-                            img.alt = char.basic.name || '';
-                            img.title = char.basic.name || '';
-
-                            img.onclick = async () => {
-                                const success = await copyImage(img);
-                                if (success) {
-                                    showToast(`Copied: ${char.basic.name}`);
-                                } else {
-                                    showToast('Failed to copy image');
-                                }
-                            };
-
-                            container.appendChild(img);
-                        }
-                    });
-                })
-                .catch(error => {
-                    document.getElementById('loading').style.display = 'none';
-                    document.getElementById('iconContainer').innerHTML =
-                        `<div class="error">Error: ${error.message}</div>`;
-                    console.error('Error:', error);
-                });
-        }
-
         // Toast Function
         function showToast(message = "Copied to Clipboard!") {
             const toast = document.getElementById("toast");
@@ -479,6 +356,8 @@
             }, 3000);
         }
     </script>
+    ```
+
 </body>
 
 </html>

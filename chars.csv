@@ -1,0 +1,629 @@
+0,-,Error
+1,Ganyu,Character
+2,Diona,Character
+3,Kaeya,Character
+4,Chongyun,Character
+5,Kamisato Ayaka,Character
+6,Eula,Character
+7,Shenhe,Character
+8,Qiqi,Character
+9,Barbara,Character
+10,Xingqiu,Character
+11,Mona,Character
+12,Tartaglia,Character
+13,Sangonomiya Kokomi,Character
+14,Kamisato Ayato,Character
+15,Candace,Character
+16,Nilou,Character
+17,Diluc,Character
+18,Xiangling,Character
+19,Bennett,Character
+20,Amber,Character
+21,Yoimiya,Character
+22,Klee,Character
+23,Hu Tao,Character
+24,Yanfei,Character
+25,Dehya,Character
+26,Fischl,Character
+27,Razor,Character
+28,Keqing,Character
+29,Cyno,Character
+30,Beidou,Character
+31,Kujou Sara,Character
+32,Raiden Shogun,Character
+33,Yae Miko,Character
+34,Lisa,Character
+35,Dori,Character
+36,Sucrose,Character
+37,Jean,Character
+38,Venti,Character
+39,Xiao,Character
+40,Kaedehara Kazuha,Character
+41,Wanderer,Character
+42,Ningguang,Character
+43,Noelle,Character
+44,Zhongli,Character
+45,Albedo,Character
+46,Arataki Itto,Character
+47,Collei,Character
+48,Tighnari,Character
+49,Nahida,Character
+50,Yaoyao,Character
+51,Baizhu,Character
+52,Fatui Cryo Cicin Mage,Character
+53,Rhodeia of Loch,Character
+54,Mirror Maiden,Character
+55,Fatui Pyro Agent,Character
+56,Abyss Lector: Fathomless Flames,Character
+57,Electro Hypostasis,Character
+58,Maguu Kenki,Character
+59,Stonehide Lawachurl,Character
+60,Jadeplume Terrorshroom,Character
+61,Undivided Heart,Action
+62,"Shaken, Not Purred",Action
+63,Cold-Blooded Strike,Action
+64,Steady Breathing,Action
+65,Kanten Senmyou Blessing,Action
+66,Wellspring of War-Lust,Action
+67,Mystical Abandon,Action
+68,Rite of Resurrection,Action
+69,Glorious Season,Action
+70,The Scent Remained,Action
+71,Prophecy of Submersion,Action
+72,Abyssal Mayhem: Hydrospout,Action
+73,Tamakushi Casket,Action
+74,Kyouka Fuushi,Action
+75,The Overflow,Action
+76,The Starry Skies Their Flowers Rain,Action
+77,Flowing Flame,Action
+78,Crossfire,Action
+79,Grand Expectation,Action
+80,Bunny Triggered,Action
+81,Naganohara Meteor Swarm,Action
+82,Pounding Surprise,Action
+83,Sanguine Rouge,Action
+84,Right of Final Interpretation,Action
+85,Stalwart and True,Action
+86,Stellar Predator,Action
+87,Awakening,Action
+88,Thundering Penance,Action
+89,Featherfall Judgment,Action
+90,Lightning Storm,Action
+91,Sin of Pride,Action
+92,Wishes Unnumbered,Action
+93,The Shrine's Sacred Shade,Action
+94,Pulsating Witch,Action
+95,Discretionary Supplement,Action
+96,Chaotic Entropy,Action
+97,Lands of Dandelion,Action
+98,Embrace of Winds,Action
+99,Conqueror of Evil: Guardian Yaksha,Action
+100,Poetics of Fuubutsu,Action
+101,Gales of Reverie,Action
+102,Strategic Reserve,Action
+103,I Got Your Back,Action
+104,Dominance of Earth,Action
+105,Descent of Divinity,Action
+106,Arataki Ichiban,Action
+107,Floral Sidewinder,Action
+108,Keen Sight,Action
+109,The Seed of Stored Knowledge,Action
+110,Beneficent,Action
+111,All Things Are of the Earth,Action
+112,Cicin's Cold Glare,Action
+113,Streaming Surge,Action
+114,Mirror Cage,Action
+115,Paid in Full,Action
+116,Embers Rekindled,Action
+117,Absorbing Prism,Action
+118,Transcendent Automaton,Action
+119,Stonehide Reforged,Action
+120,Proliferating Spores,Action
+121,Magic Guide,Action
+122,Sacrificial Fragments,Action
+123,Skyward Atlas,Action
+124,A Thousand Floating Dreams,Action
+125,Fruit of Fulfillment,Action
+126,Raven Bow,Action
+127,Sacrificial Bow,Action
+128,Skyward Harp,Action
+129,Amos' Bow,Action
+130,Elegy for the End,Action
+131,King's Squire,Action
+132,White Iron Greatsword,Action
+133,Sacrificial Greatsword,Action
+134,Wolf's Gravestone,Action
+135,Skyward Pride,Action
+136,The Bell,Action
+137,White Tassel,Action
+138,Lithic Spear,Action
+139,Skyward Spine,Action
+140,Vortex Vanquisher,Action
+141,Engulfing Lightning,Action
+142,Moonpiercer,Action
+143,Traveler's Handy Sword,Action
+144,Sacrificial Sword,Action
+145,Aquila Favonia,Action
+146,Skyward Blade,Action
+147,Favonius Sword,Action
+148,Adventurer's Bandana,Action
+149,Lucky Dog's Silver Circlet,Action
+150,Traveling Doctor's Handkerchief,Action
+151,Gambler's Earrings,Action
+152,Instructor's Cap,Action
+153,Exile's Circlet,Action
+154,Ornate Kabuto,Action
+155,Emblem of Severed Fate,Action
+156,General's Ancient Helm,Action
+157,Tenacity of the Millelith,Action
+158,Thundering Poise,Action
+159,Vermillion Hereafter,Action
+160,Capricious Visage,Action
+161,Shimenawa's Reminiscence,Action
+162,Crown of Watatsumi,Action
+163,Ocean-Hued Clam,Action
+164,Shadow of the Sand King,Action
+165,Broken Rime's Echo,Action
+166,Blizzard Strayer,Action
+167,Wine-Stained Tricorne,Action
+168,Heart of Depth,Action
+169,Witch's Scorching Hat,Action
+170,Crimson Witch of Flames,Action
+171,Thunder Summoner's Crown,Action
+172,Thundering Fury,Action
+173,Viridescent Venerer's Diadem,Action
+174,Viridescent Venerer,Action
+175,Mask of Solitude Basalt,Action
+176,Archaic Petra,Action
+177,Laurel Coronet,Action
+178,Deepwood Memories,Action
+179,Liyue Harbor Wharf,Action
+180,Knights of Favonius Library,Action
+181,Jade Chamber,Action
+182,Dawn Winery,Action
+183,Wangshu Inn,Action
+184,Favonius Cathedral,Action
+185,Tenshukaku,Action
+186,Grand Narukami Shrine,Action
+187,Sangonomiya Shrine,Action
+188,Sumeru City,Action
+189,Vanarana,Action
+190,Chinju Forest,Action
+191,Golden House,Action
+192,Gandharva Ville,Action
+193,Stormterror's Lair,Action
+194,Paimon,Action
+195,Katheryne,Action
+196,Timaeus,Action
+197,Wagner,Action
+198,Chef Mao,Action
+199,Tubby,Action
+200,Timmie,Action
+201,Liben,Action
+202,Chang the Ninth,Action
+203,Ellin,Action
+204,Iron Tongue Tian,Action
+205,Liu Su,Action
+206,Hanachirusato,Action
+207,Kid Kujirai,Action
+208,Xudong,Action
+209,Dunyarzad,Action
+210,Rana,Action
+211,Master Zhang,Action
+212,Setaria,Action
+213,Yayoi Nanatsuki,Action
+214,Parametric Transformer,Action
+215,NRE,Action
+216,Red Feather Fan,Action
+217,Treasure-Seeking Seelie,Action
+218,Ancient Courtyard,Action
+219,Covenant of Rock,Action
+220,Joyous Celebration,Action
+221,Fresh Wind of Freedom,Action
+222,In Every House a Stove,Action
+223,Elemental Resonance: Woven Ice,Action
+224,Elemental Resonance: Shattering Ice,Action
+225,Elemental Resonance: Woven Waters,Action
+226,Elemental Resonance: Soothing Water,Action
+227,Elemental Resonance: Woven Flames,Action
+228,Elemental Resonance: Fervent Flames,Action
+229,Elemental Resonance: Woven Thunder,Action
+230,Elemental Resonance: High Voltage,Action
+231,Elemental Resonance: Woven Winds,Action
+232,Elemental Resonance: Impetuous Winds,Action
+233,Elemental Resonance: Woven Stone,Action
+234,Elemental Resonance: Enduring Rock,Action
+235,Elemental Resonance: Woven Weeds,Action
+236,Elemental Resonance: Sprawling Greenery,Action
+237,Wind and Freedom,Action
+238,Stone and Contracts,Action
+239,Thunder and Eternity,Action
+240,Nature and Wisdom,Action
+241,The Bestest Travel Companion!,Action
+242,Changing Shifts,Action
+243,Toss-Up,Action
+244,Strategize,Action
+245,I Haven't Lost Yet!,Action
+246,Leave It to Me!,Action
+247,When the Crane Returned,Action
+248,Starsigns,Action
+249,Calx's Arts,Action
+250,Master of Weaponry,Action
+251,Blessing of the Divine Relic's Installation,Action
+252,Quick Knit,Action
+253,Send Off,Action
+254,Guardian's Oath,Action
+255,Abyssal Summons,Action
+256,Fatui Conspiracy,Action
+257,Plunging Strike,Action
+258,Heavy Strike,Action
+259,The Legend of Vennessa,Action
+260,Friendship Eternal,Action
+261,Rhythm of the Great Dream,Action
+262,Where Is the Unseen Razor?,Action
+263,Pankration!,Action
+264,Lyresong,Action
+265,Jueyun Guoba,Action
+266,Adeptus' Temptation,Action
+267,Lotus Flower Crisp,Action
+268,Northern Smoked Chicken,Action
+269,Sweet Madame,Action
+270,Mondstadt Hash Brown,Action
+271,Mushroom Pizza,Action
+272,Minty Meat Rolls,Action
+273,Teyvat Fried Egg,Action
+274,Sashimi Platter,Action
+275,Tandoori Roast Chicken,Action
+276,Butter Crab,Action
+277,La Signora,Character
+278,Azhdaha,Character
+279,Layla,Character
+280,Yelan,Character
+281,Lyney,Character
+282,Lynette,Character
+283,Gorou,Character
+284,Alhaitham,Character
+285,Eremite Scorching Loremaster,Character
+286,Thunder Manifestation,Character
+287,Dvalin,Character
+288,Light's Remit,Action
+289,Turn Control,Action
+290,Conclusive Ovation,Action
+291,A Cold Blade Like a Shadow,Action
+292,Rushing Hound: Swift as the Wind,Action
+293,Structuration,Action
+294,Pain for Pain,Action
+295,Scorpocalypse,Action
+296,Grieving Echo,Action
+297,Rending Vortex,Action
+298,Lunar Cycles Unending,Action
+299,Lost Prayer to the Sacred Winds,Action
+300,Tulaytullah's Remembrance,Action
+301,Beacon of the Reed Sea,Action
+302,Primordial Jade Winged-Spear,Action
+303,Light of Foliar Incision,Action
+304,Gilded Dreams,Action
+305,Flowing Rings,Action
+306,Echoes of an Offering,Action
+307,Heart of Khvarena's Brilliance,Action
+308,Vourukasha's Glow,Action
+309,Weeping Willow of the Lake,Action
+310,Opera Epiclese,Action
+311,Mamere,Action
+312,Seed Dispensary,Action
+313,Memento Lens,Action
+314,Passing of Judgment,Action
+315,The Boar Princess,Action
+316,Falls and Fortune,Action
+317,Flickering Four-Leaf Sigil,Action
+318,Fish and Chips,Action
+319,Thoma,Character
+320,Sayu,Character
+321,Cryo Hypostasis,Character
+322,Millennial Pearl Seahorse,Character
+323,A Subordinate's Skills,Action
+324,Skiving: New and Improved,Action
+325,Sternfrost Prism,Action
+326,Pearl Solidification,Action
+327,Sapwood Blade,Action
+328,Veteran's Visage,Action
+329,Jeht,Action
+330,Silver and Melus,Action
+331,Machine Assembly Line,Action
+332,Sunyata Flower,Action
+333,Matsutake Meat Rolls,Action
+334,Charlotte,Character
+335,Neuvillette,Character
+336,Kirara,Character
+337,Fatui Electro Cicin Mage,Character
+338,A Summation of Interest,Action
+339,Heir to the Ancient Sea's Authority,Action
+340,Countless Sights to See,Action
+341,Electro Cicin's Gleam,Action
+342,Tome of the Eternal Flow,Action
+343,Golden Troupe's Reward,Action
+344,Fortress of Meropide,Action
+345,Lumenstone Adjuvant,Action
+346,Day of Resistance: Moment of Shattered Dreams,Action
+347,Controlled Directional Blast,Action
+348,Kuki Shinobu,Character
+349,Faruzan,Character
+350,Abyss Herald: Wicked Torrents,Character
+351,Emperor of Fire and Iron,Character
+352,The Wondrous Path of Truth,Action
+353,Surging Undercurrent,Action
+354,Molten Mail,Action
+355,Rightful Reward,Action
+356,Amethyst Crown,Action
+357,Seirai Island,Action
+358,Taroumaru,Action
+359,The White Glove and the Fisherman,Action
+360,Underwater Treasure Hunt,Action
+361,Rainbow Macarons,Action
+362,To Ward Weakness,Action
+363,Wriothesley,Character
+364,Furina,Character
+365,Xinyan,Character
+366,Yun Jin,Character
+367,Kaveh,Character
+368,All-Devouring Narwhal,Character
+369,Consecrated Scorpion,Character
+370,Consecrated Flying Serpent,Character
+371,Guardian of Apep's Oasis,Character
+372,Terror for the Evildoers,Action
+373,Hear Me — Let Us Raise the Chalice of Love!,Action
+374,Rockin' in a Flaming World,Action
+375,Decorous Harmony,Action
+376,The Art of Budgeting,Action
+377,Lightless Feeding,Action
+378,Fatal Fulmination,Action
+379,Deathly Cyclone,Action
+380,A Thousand Young,Action
+381,Cashflow Supervision,Action
+382,End of the Line,Action
+383,Forest Regalia,Action
+384,Splendor of Tranquil Waters,Action
+385,Marechaussee Hunter,Action
+386,Golden Troupe,Action
+387,Flower of Paradise Lost,Action
+388,The Mausoleum of King Deshret,Action
+389,Central Laboratory Ruins,Action
+390,Sir Arthur,Action
+391,Kusava,Action
+392,Vicious Ancient Battle,Action
+393,Water and Justice,Action
+394,Countdown to the Show: 3,Action
+395,Chevreuse,Character
+396,Navia,Character
+397,Frost Operative,Character
+398,Vanguard's Coordinated Tactics,Action
+399,Undisclosed Distribution Channels,Action
+400,Rimeflow Rapier,Action
+401,"""Ultimate Overlord's Mega Magic Sword""",Action
+402,Prospector's Drill,Action
+403,Gladiator's Triumphus,Action
+404,Serene,Action
+405,"""I'd Rather Lose Money Myself...""",Action
+406,Tada!,Action
+407,Freminet,Character
+408,Xianyun,Character
+409,Hydro Hilichurl Rogue,Character
+410,Moment of Waking and Resolve,Action
+411,They Call Her Cloud Retainer,Action
+412,Featherweight Foam,Action
+413,Xenochromatic Hunter's Ray,Action
+414,Yumkasaurus,Action
+415,Koholasaurus,Action
+416,Stadium of the Sacred Flame,Action
+417,Atea,Action
+418,Saurian Dining Buddies,Action
+419,Edict of Absolution,Action
+420,Chiori,Character
+421,Abyss Lector: Violet Lightning,Character
+422,Eremite Floral Ring-Dancer,Character
+423,In Five Colors Dyed,Action
+424,Chain Lightning Cascade,Action
+425,Spirit Serpent's Swirl,Action
+426,Portable Power Saw,Action
+427,Conductor's Top Hat,Action
+428,Tepetlisaurus,Action
+429,Stage Tepetl,Action
+430,Eremite Teatime,Action
+431,Saurus Crackers,Action
+432,Rosaria,Character
+433,Sigewinne,Character
+434,Golden Wolflord,Character
+435,Divine Retribution,Action
+436,Requires Appropriate Rest,Action
+437,Beastly Corrosion,Action
+438,Flowing Purity,Action
+439,Maiden's Fading Beauty,Action
+440,Iktomisaurus,Action
+441,"""Scions of the Canopy""",Action
+442,Ultimate Surfing Buddy!,Action
+443,Glittering Gemstones,Action
+444,Mualani,Character
+445,Clorinde,Character
+446,Night Realm's Gift: Crests and Troughs,Action
+447,Dark-Shattering Flame,Action
+448,Demon-Warrior's Feather Mask,Action
+449,Qucusaurus,Action
+450,"""People of the Springs""",Action
+451,Pilgrimage of the Return of the Sacred Flame,Action
+452,Abundant Phlogiston,Action
+453,Puff Pops,Action
+454,Arlecchino,Character
+455,Kinich,Character
+456,"All Reprisals and Arrears, Mine to Bear",Action
+457,Night Realm's Gift: Repaid in Full,Action
+458,"""Flower-Feather Clan""",Action
+459,Tepetlisaur — Treasure Hunter at Large,Action
+460,Hot Spring O'Clock,Action
+461,Kachina,Character
+462,Emilie,Character
+463,Night Realm's Gift: Heart of Unity,Action
+464,Marcotte Sillage,Action
+465,Waverider,Action
+466,"""Masters of the Night-Wind""",Action
+467,In the Name of the Extreme,Action
+468,Mystique Soup,Action
+469,Sethos,Character
+470,Xilonen,Character
+471,Pylon of the Sojourning Sun Temple,Action
+472,Tour of Tepeilhuitl,Action
+473,Tatankasaurus,Action
+474,"""Collective of Plenty""",Action
+475,Art of Sleepy Meditation,Action
+476,Sing Your Heart Out,Action
+477,Citlali,Character
+478,Mavuika,Character
+479,Chasca,Character
+480,Mamaloaco's Frigid Rain,Action
+481,"""Humanity's Name"" Unfettered",Action
+482,Bullet Trick,Action
+483,The Dockhand's Assistant,Action
+484,Crown of the Saints,Action
+485,Scroll of the Hero of Cinder City,Action
+486,Rawr! Rawr!,Action
+487,Fight for Death,Action
+488,"Flying Squad, Attack!",Action
+489,Fire and War,Action
+490,Fruits of Training,Action
+491,Harvest's Boon,Action
+492,Lan Yan,Character
+493,Shikanoin Heizou,Character
+494,Gluttonous Yumkasaur Mountain King,Character
+495,Dance Vestments Billow Like Rainbow Jade,Action
+496,Curious Casefiles,Action
+497,The All-Devourer,Action
+498,Crownless Crown,Action
+499,Whimsical Dance of the Withered,Action
+500,Calligraphy Tavern,Action
+501,Constellation Metropole,Action
+502,Forest Blessing,Action
+503,Gift of the Goddess of Prophecy,Action
+504,Harvest Time,Action
+505,"Awesome, Bro",Action
+506,Iansan,Character
+507,Yumemizuki Mizuki,Character
+508,Lord of Eroded Primal Fire,Character
+509,Teachings of the Collective of Plenty,Action
+510,Your Echo I Meet in Dreams,Action
+511,Undying Fury,Action
+512,Royal Masque,Action
+513,Unfinished Reverie,Action
+514,Fragment of Harmonic Whimsy,Action
+515,Fell Dragon's Awakening,Action
+516,Narration Footnotes,Action
+517,Broken Sea,Action
+518,"""A Blessing From 'M'""",Action
+519,"""Revelrous Beats""",Action
+520,Aqua Simulacra,Action
+521,Varesa,Character
+522,Ifa,Character
+523,Hydro Tulpa,Character
+524,A Hero of Justice's Triumph,Action
+525,Tactical Warm Compress Bandaging,Action
+526,Flow Convergence,Action
+527,Everlasting Moonglow,Action
+528,Fell Dragon's Monocle,Action
+529,Noblesse Oblige,Action
+530,Adventurers' Guild,Action
+531,An Ancient Sacrifice of Sacred Brocade,Action
+532,Chenyu Brew,Action
+533,Escoffier,Character
+534,Gaming,Character
+535,Black Serpent Knight: Rockbreaker Ax,Character
+536,Tea Parties Bursting With Color,Action
+537,Bringer of Blessing,Action
+538,"""Once Stood Against the Tide of Dark Waters Like Bedrock...""",Action
+539,Nymph's Dream,Action
+540,Seymour,Action
+541,Lost Legacies in the Sand,Action
+542,The Narzissenkreuz Adventure,Action
+543,Plan to Save the World,Action
+544,Skirk,Character
+545,Ororon,Character
+546,Consecrated Horned Crocodile,Character
+547,Far to Fall,Action
+548,Trails Amidst the Forest Fog,Action
+549,Deathly Overflow,Action
+550,Starcaller's Watch,Action
+551,Flame-Forged Insight,Action
+552,Dyed Tassel,Action
+553,Bona and Cocouik,Action
+554,"""An Adventure Through the Morning Mist""",Action
+555,Mika,Character
+556,Ineffa,Character
+557,Goldflame Qucusaur Tyrant,Character
+558,Companion's Counsel,Action
+559,Rectifying Processor,Action
+560,Flamelord's Blessing,Action
+561,Silvermoon Hall,Action
+562,Tideseal Stone,Action
+563,Frostmoon Enclave,Action
+564,Nasha Town,Action
+565,Kuuvahki Experimental Design Bureau,Action
+566,Elemental Transfiguration: Superconduct Blessing,Action
+567,Elemental Transfiguration: Vaporize Blessing,Action
+568,Genius's Upgrade Technique,Action
+569,Clink Clank Legion,Action
+570,Dahlia,Character
+571,Aino,Character
+572,Consecrated Fanged Beast,Character
+573,You Shall Go Out With Joy,Action
+574,The Burden of Creative Genius,Action
+575,Withered Reeds Eclipse the Sun,Action
+576,Snare Hook,Action
+577,Blubberbeast,Action
+578,Lepine-Pauline,Action
+579,Elemental Transfiguration: Bloom Blessing,Action
+580,Elemental Transfiguration: Lava Blessing,Action
+581,Moonsign: Ascendant Gleam,Action
+582,Moon and Homeland,Action
+583,Cleaning Time,Action
+584,Flins,Character
+585,Lauma,Character
+586,Experimental Field Generator,Character
+587,Part the Veil of Snow,Action
+588,"""O Lips, Weave Me Songs and Psalms""",Action
+589,Gravity Field,Action
+590,Gladiator's Finale,Action
+591,Netochka,Action
+592,Elemental Transfiguration: Rimegrass Blessing,Action
+593,Elemental Transfiguration: Stormgale Blessing,Action
+594,The Other Side of the Frostmoon,Action
+595,Roulette Special,Action
+596,Nefer,Character
+597,Wayward Hermetic Spiritspeaker,Character
+598,Black Serpent Knight: Windcutter,Character
+599,Victory Flows from the Turning of Tides,Action
+600,Flow of Forms,Action
+601,"Once, the Lone Wind That Kept the Dark Calamity at Bay...",Action
+602,Nightmare Omen,Action
+603,Elemental Transfiguration: Aquabreeze Blessing,Action
+604,Elemental Transfiguration: Thunderbloom Blessing,Action
+605,Lil' Fungi's Fun-Tastic Fiesta,Action
+606,The Power of Research,Action
+607,Lakkaberry Pie,Action
+608,Durin,Character
+609,Jahoda,Character
+610,Hydro Hypostasis,Character
+611,Adamah's Redemption,Action
+612,Backstreet Guile,Action
+613,Treacherous Torrent,Action
+614,Genesis of Starsigns,Action
+615,Sparkborne Magic,Action
+616,Phantasmal Nocturne,Action
+617,Temporal Wind's Eulogy,Action
+618,Witch's Homework,Action
+619,Feasting in a Shared Toast,Action
+620,Columbina,Character
+621,Illuga,Character
+622,Radiance Over Blossoms and Peaks,Action
+623,Surge of Lightning,Action
+624,Sevenfold Transmutation,Action
+625,Book of Blinding Light,Action
+626,Elk With Fanged Lanterns,Action
+627,Return of the Three Moons,Action
+628,Elemental Transfiguration: Overload Blessing,Action

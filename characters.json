@@ -104,7 +104,7 @@
                     "max_cnt": 1
                 },
                 "element": 301,
-                "hp": 10,
+                "hp": 12,
                 "skill_cost": 3
             },
             {
@@ -418,6 +418,19 @@
                 "element": 302,
                 "hp": 10,
                 "skill_cost": 2
+            },
+            {
+                "basic": {
+                    "item_id": 1217,
+                    "name": "Columbina",
+                    "icon": "https://act-webstatic.hoyoverse.com/hk4e/e20200928calculate/item_icon/6ab3168d/4efc04e0d956ce3dc94ea9d1b5cd2a1f.png",
+                    "icon_small": "https://act-webstatic.hoyoverse.com/hk4e/e20200928calculate/item_icon/6ab31694/5b79a7f688ef8cba6e67d099886a6e61.png",
+                    "wiki_url": "https://wiki.hoyolab.com/pc/genshin/entry/11734",
+                    "max_cnt": 1
+                },
+                "element": 302,
+                "hp": 10,
+                "skill_cost": 3
             },
             {
                 "basic": {
@@ -1223,6 +1236,19 @@
                 },
                 "element": 305,
                 "hp": 12,
+                "skill_cost": 2
+            },
+            {
+                "basic": {
+                    "item_id": 1612,
+                    "name": "Illuga",
+                    "icon": "https://act-webstatic.hoyoverse.com/hk4e/e20200928calculate/item_icon/6ab3168d/972f565dbba9de910e00adf6baa9096a.png",
+                    "icon_small": "https://act-webstatic.hoyoverse.com/hk4e/e20200928calculate/item_icon/6ab31694/bfc7b6b56e4623431a1da7ea77546cd6.png",
+                    "wiki_url": "https://wiki.hoyolab.com/pc/genshin/entry/11735",
+                    "max_cnt": 1
+                },
+                "element": 305,
+                "hp": 10,
                 "skill_cost": 2
             },
             {
