@@ -280,7 +280,7 @@
 
             if (winnerName && winnersCount === 1 && playerMap[winnerName]) {
                 const winnerQuote = playerMap[winnerName].quote;
-                if (winnerQuote && winnerQuote !== ".") {
+                if (winnerQuote) {
                     output += `# Winner's Quote: "${winnerQuote}"\n`;
                     output += `comment on quote\n`;
                 }
