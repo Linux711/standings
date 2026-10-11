@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Name Extractor</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f0f2f5;
+            padding: 40px 20px;
+            color: #333;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin: 0 0 12px;
+        }
+
+        .description {
+            text-align: center;
+            color: #666;
+            margin: 0 0 28px;
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 15px;
+            transition: transform 0.1s, opacity 0.2s;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-tab {
+            padding: 10px 20px;
+            background: #e0e0e0;
+        }
+
+        .nav-tab.active,
+        .nav-tab:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin: 18px 0 8px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 220px;
+            padding: 14px;
+            border: 1px solid #ccd2da;
+            border-radius: 6px;
+            font: 14px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            resize: vertical;
+        }
+
+        textarea:focus {
+            outline: 2px solid #aab5f5;
+            border-color: #667eea;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 14px;
+        }
+
+        .primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .secondary {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .status {
+            min-height: 22px;
+            margin-top: 12px;
+            color: #555;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 24px 18px;
+            }
+
+            body {
+                padding: 20px 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="nav-tab" onclick="window.location.href='index.html'">Standings</button>
+            <button class="nav-tab" onclick="window.location.href='characters.html'">Character Icons</button>
+            <button class="nav-tab active" onclick="window.location.href='name-extractor.html'">Name Extractor</button>
+        </div>
+
+        <h1>Name Extractor</h1>
+        <p class="description">Paste a standings table to extract player names, one per line.</p>
+
+        <label for="inputText">Standings table</label>
+        <textarea id="inputText"
+            placeholder="1 | Rafu | 5 | 0 | 0 | 15 |&#10;2 | Oldbie is coming | 4 | 0 | 1 | 12 |&#10;3 | Огурчик238 | 4 | 0 | 1 | 12 |&#10;4 | SOMU | 4 | 0 | 1 | 12 |&#10;5 | Rikka | 3 | 1 | 1 | 10 |"></textarea>
+                
+        <div class="actions">
+            <button class="primary" id="extractButton">Extract Names</button>
+            <button class="secondary" id="copyButton">Copy Names</button>
+            <button class="secondary" id="clearButton">Clear</button>
+        </div>
+
+        <label for="outputText">Extracted names</label>
+        <textarea id="outputText" placeholder="Player names will appear here..." readonly></textarea>
+        <div class="status" id="status" aria-live="polite"></div>
+    </div>
+
+    <script>
+        function extractNames() {
+            const input = document.getElementById('inputText').value;
+            const names = [];
+
+            for (const line of input.split(/\r?\n/)) {
+                const trimmedLine = line.trim();
+
+                // Ignore blank lines and Markdown table separator rows.
+                if (!trimmedLine || /^\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?$/.test(trimmedLine)) {
+                    continue;
+                }
+
+                // Split Markdown table rows into cells.
+                if (trimmedLine.includes('|')) {
+                    const cells = trimmedLine
+                        .replace(/^\|/, '')
+                        .replace(/\|$/, '')
+                        .split('|')
+                        .map(cell => cell.trim());
+
+                    // A standings row has rank, name, and then statistics.
+                    // Use the second cell as the name when the first cell is a rank.
+                    if (cells.length >= 2 && /^\d+\.?$/.test(cells[0])) {
+                        const name = cells[1].trim();
+                        if (name) names.push(name);
+                    }
+                } else {
+                    // Also support simple tab-separated rows, if pasted that way.
+                    const cells = trimmedLine.split('\t').map(cell => cell.trim());
+                    if (cells.length >= 2 && /^\d+\.?$/.test(cells[0]) && cells[1]) {
+                        names.push(cells[1]);
+                    }
+                }
+            }
+
+            document.getElementById('outputText').value = names.join('\n');
+            document.getElementById('status').textContent =
+                names.length ? `Extracted ${names.length} name${names.length === 1 ? '' : 's'}.` : 'No names found. Check that the pasted table includes rank and name columns.';
+        }
+
+        async function copyNames() {
+            const output = document.getElementById('outputText');
+            const status = document.getElementById('status');
+
+            if (!output.value.trim()) {
+                status.textContent = 'There are no names to copy.';
+                return;
+            }
+
+            try {
+                await navigator.clipboard.writeText(output.value);
+                status.textContent = 'Names copied to clipboard.';
+            } catch (error) {
+                output.focus();
+                output.select();
+                status.textContent = 'Clipboard access failed. The names are selected; copy them manually.';
+            }
+        }
+
+        document.getElementById('extractButton').addEventListener('click', extractNames);
+        document.getElementById('copyButton').addEventListener('click', copyNames);
+        document.getElementById('clearButton').addEventListener('click', () => {
+            document.getElementById('inputText').value = '';
+            document.getElementById('outputText').value = '';
+            document.getElementById('status').textContent = '';
+        });
+    </script>
+</body>
+
+</html>
