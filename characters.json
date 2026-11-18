@@ -1097,6 +1097,19 @@
             },
             {
                 "basic": {
+                    "item_id": 1517,
+                    "name": "Varka",
+                    "icon": "https://act-webstatic.hoyoverse.com/hk4e/e20200928calculate/item_icon/6aea677c/67d80f54c9f2ea86ec009ceb73b3f24d.png",
+                    "icon_small": "https://act-webstatic.hoyoverse.com/hk4e/e20200928calculate/item_icon/6aea6780/743e951d71a96e5aa3a56a192880ffc5.png",
+                    "wiki_url": "https://wiki.hoyolab.com/pc/genshin/entry/13722",
+                    "max_cnt": 1
+                },
+                "element": 307,
+                "hp": 12,
+                "skill_cost": 3
+            },
+            {
+                "basic": {
                     "item_id": 1601,
                     "name": "Ningguang",
                     "icon": "https://act-webstatic.hoyoverse.com/hk4e/e20200928calculate/item_icon/67c7f6fc/416f9322f25495fd37da5add1d9a10c9.png",
@@ -1781,7 +1794,7 @@
                     "max_cnt": 1
                 },
                 "element": 307,
-                "hp": 10,
+                "hp": 12,
                 "skill_cost": 2
             },
             {

@@ -1,3 +1,4 @@
+
 const CARD_COLUMNS = [
     ["IG", "IH", "IK"],
     ["IL", "IO", "IP"],
@@ -9,11 +10,6 @@ let cardMap = {};
 
 /**
  * Load ID → card name mappings from chars.csv
- *
- * CSV format:
- * 50,Yaoyao,Character
- * 51,Baizhu,Character
- * 52,Fatui Cryo Cicin Mage,Character
  */
 async function loadCardMapping() {
     const response = await fetch("chars.csv");
@@ -43,11 +39,6 @@ async function loadCardMapping() {
 
 /**
  * Convert an Excel column name to its 1-based number.
- *
- * A  = 1
- * Z  = 26
- * AA = 27
- * IG = 243
  */
 function excelColumnNumber(column) {
     let result = 0;
@@ -74,7 +65,8 @@ function excelColumnOffset(column) {
 
 
 /**
- * Convert Base64 deck code into an uppercase hex string.
+ * Convert Base64 deck code into hexadecimal,
+ * then reverse the byte offset.
  */
 function base64ToHexStream(base64String) {
     const binary = atob(base64String);
@@ -88,18 +80,41 @@ function base64ToHexStream(base64String) {
             .padStart(2, "0");
     }
 
-    return hex.toUpperCase();
+    hex = hex.toUpperCase();
+
+    // Valid deck codes contain 51 bytes (102 hex characters).
+    if (hex.length !== 102) {
+        throw new Error("Invalid deck code length");
+    }
+
+    // The final byte stores the offset.
+    const offset = parseInt(hex.slice(-2), 16);
+
+    // Reverse the offset applied during encoding.
+    let correctedHex = "";
+
+    for (let i = 0; i < hex.length; i += 2) {
+        let byte = parseInt(hex.slice(i, i + 2), 16);
+
+        byte = (byte - offset + 256) % 256;
+
+        correctedHex += byte
+            .toString(16)
+            .padStart(2, "0");
+    }
+
+    return correctedHex.toUpperCase();
 }
 
 
 /**
- * Extract a card ID using the same logic as the Python version.
+ * Extract a card ID using the scrambling positions.
  */
 function extractCardId(hexStream, columns) {
     const positions = columns.map(column => {
         let position = excelColumnOffset(column);
 
-        // Same wraparound behavior as Python
+        // Same wraparound behavior as the original Python version.
         position =
             ((position % hexStream.length) +
                 hexStream.length) %
@@ -121,11 +136,12 @@ function extractCardId(hexStream, columns) {
  */
 async function decodeCharacters(deckCode) {
 
-    // Load chars.csv if it hasn't been loaded yet
+    // Load chars.csv if it hasn't been loaded yet.
     if (Object.keys(cardMap).length === 0) {
         await loadCardMapping();
     }
 
+    // Convert Base64 and reverse the offset.
     const hexStream = base64ToHexStream(deckCode);
 
     const characters = [];
