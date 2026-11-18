@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
@@ -110,6 +109,22 @@
             color: white;
         }
 
+        /* Search Bar */
+        #searchInput {
+            display: block;
+            width: 25%;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            outline: none;
+        }
+
+        #searchInput:focus {
+            border-color: #667eea;
+        }
+
         /* Character Icons Page Styles */
         .icons-container {
             display: grid;
@@ -163,6 +178,9 @@
 
         <!-- Character Icons Page -->
         <div id="icons-page">
+
+            <input type="text" id="searchInput" placeholder="Search..." autocomplete="off">
+
             <div id="loading" class="loading">Loading...</div>
             <div class="icons-container" id="iconContainer"></div>
         </div>
@@ -204,26 +222,45 @@
                     document.getElementById('loading').style.display = 'none';
 
                     const container = document.getElementById('iconContainer');
+                    const searchInput = document.getElementById('searchInput');
 
-                    characters.forEach(char => {
-                        if (char.basic && char.basic.icon_small) {
-                            const img = document.createElement('img');
-                            img.src = char.basic.icon_small;
-                            img.alt = char.basic.name || '';
-                            img.title = char.basic.name || '';
+                    // Display characters matching the search term
+                    function displayCharacters(searchTerm = '') {
+                        container.innerHTML = '';
 
-                            img.onclick = async () => {
-                                const success = await copyImage(img);
-                                if (success) {
-                                    showToast(`Copied: ${char.basic.name}`);
-                                } else {
-                                    showToast('Failed to copy image');
-                                }
-                            };
+                        const filteredCharacters = characters.filter(char => {
+                            const name = char.basic?.name || '';
+                            return name.toLowerCase().includes(searchTerm.toLowerCase());
+                        });
 
-                            container.appendChild(img);
-                        }
+                        filteredCharacters.forEach(char => {
+                            if (char.basic && char.basic.icon_small) {
+                                const img = document.createElement('img');
+                                img.src = char.basic.icon_small;
+                                img.alt = char.basic.name || '';
+                                img.title = char.basic.name || '';
+
+                                img.onclick = async () => {
+                                    const success = await copyImage(img);
+                                    if (success) {
+                                        showToast(`Copied: ${char.basic.name}`);
+                                    } else {
+                                        showToast('Failed to copy image');
+                                    }
+                                };
+
+                                container.appendChild(img);
+                            }
+                        });
+                    }
+
+                    // Update displayed characters whenever the user types
+                    searchInput.addEventListener('input', () => {
+                        displayCharacters(searchInput.value);
                     });
+
+                    // Display all characters initially
+                    displayCharacters();
                 })
                 .catch(error => {
                     document.getElementById('loading').style.display = 'none';
